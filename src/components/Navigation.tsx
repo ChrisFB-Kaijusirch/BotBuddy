@@ -40,7 +40,10 @@ const Navigation = () => {
             <Button variant="ghost">
               Sign In
             </Button>
-            <Button variant="default">
+            <Button 
+              variant="default"
+              onClick={() => window.location.href = "/create-bot"}
+            >
               Start Free
             </Button>
           </div>

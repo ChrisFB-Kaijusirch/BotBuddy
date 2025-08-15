@@ -22,7 +22,12 @@ const CTA = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button variant="secondary" size="xl" className="group shadow-strong">
+            <Button 
+              variant="secondary" 
+              size="xl" 
+              onClick={() => window.location.href = "/create-bot"}
+              className="group shadow-strong"
+            >
               Get Started - It's Free!
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
