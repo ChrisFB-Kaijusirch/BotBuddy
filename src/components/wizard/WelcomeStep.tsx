@@ -10,50 +10,60 @@ const WelcomeStep = ({ onNext }: WelcomeStepProps) => {
   return (
     <div className="max-w-4xl mx-auto text-center">
       <div className="mb-12">
-        <img 
-          src={botBuddyLogo} 
-          alt="BotBuddy Logo" 
-          className="w-32 h-32 mx-auto mb-8 rounded-3xl shadow-strong"
-        />
+        <div className="relative mb-8">
+          <img 
+            src={botBuddyLogo} 
+            alt="BotBuddy Logo" 
+            className="w-40 h-40 mx-auto rounded-full shadow-playful bounce-fun"
+          />
+          <div className="absolute -top-2 -right-2 text-4xl animate-bounce">👋</div>
+        </div>
         
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Welcome to{" "}
-          <span className="bg-gradient-brand bg-clip-text text-transparent drop-shadow-lg">
+        <h1 className="text-5xl md:text-7xl font-bold font-comic text-white mb-6 leading-tight">
+          Hi! I'm{" "}
+          <span className="bg-gradient-fun bg-clip-text text-transparent drop-shadow-lg">
             BotBuddy
           </span>
-          {" "}—
-          <br />
-          Your Friendly Chatbot Builder!
+          ! 🤖
         </h1>
         
-        <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-          No tech skills needed. Let's create your very own chatbot in just a few simple steps.
+        <div className="text-2xl md:text-3xl text-white/90 mb-4 font-comic">
+          I'll help you build your{" "}
+          <span className="bg-gradient-secondary bg-clip-text text-transparent font-bold">
+            first bot
+          </span>
+          . Ready? 🚀
+        </div>
+        
+        <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed font-comic">
+          No tech skills needed! Just pick, tap, talk, and share. 
+          Your bot will be ready in 3 minutes! ⏰
         </p>
         
         <Button 
           variant="hero" 
           size="xl" 
           onClick={onNext}
-          className="group shadow-strong"
+          className="group shadow-playful text-2xl py-8 px-12 rounded-3xl font-comic font-bold wiggle hover:scale-110 transition-all duration-300"
         >
-          Get Started
-          <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          Let's Build My Bot! 🎨
+          <ArrowRight className="w-6 h-6 ml-3 transition-transform group-hover:translate-x-2" />
         </Button>
       </div>
       
-      {/* Feature highlights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white/80 text-sm">
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-2 h-2 bg-secondary rounded-full"></div>
-          <span>Setup in 5 minutes</span>
+      {/* Fun feature highlights */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white/90 text-lg font-comic">
+        <div className="flex items-center justify-center gap-3 bg-white/10 rounded-2xl p-4 backdrop-blur">
+          <span className="text-2xl">⚡</span>
+          <span>3 minutes setup</span>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-2 h-2 bg-accent rounded-full"></div>
-          <span>No technical skills needed</span>
+        <div className="flex items-center justify-center gap-3 bg-white/10 rounded-2xl p-4 backdrop-blur">
+          <span className="text-2xl">🎮</span>
+          <span>Fun like a game</span>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <div className="w-2 h-2 bg-primary rounded-full"></div>
-          <span>AI-powered intelligence</span>
+        <div className="flex items-center justify-center gap-3 bg-white/10 rounded-2xl p-4 backdrop-blur">
+          <span className="text-2xl">🎯</span>
+          <span>Zero confusion</span>
         </div>
       </div>
     </div>

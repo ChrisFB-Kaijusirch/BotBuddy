@@ -5,17 +5,27 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, HelpCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import WelcomeStep from "@/components/wizard/WelcomeStep";
-import UploadStep from "@/components/wizard/UploadStep";
-import NameStep from "@/components/wizard/NameStep";
-import CustomizeStep from "@/components/wizard/CustomizeStep";
+import PurposeStep from "@/components/wizard/PurposeStep";
+import PersonalityStep from "@/components/wizard/PersonalityStep";
+import TeachingStep from "@/components/wizard/TeachingStep";
 import PreviewStep from "@/components/wizard/PreviewStep";
 import FinalStep from "@/components/wizard/FinalStep";
 
+export interface Teaching {
+  id: string;
+  trigger: string;
+  response: string;
+}
+
 export interface BotData {
   name: string;
-  files: File[];
-  color: string;
+  purpose?: string;
+  tone?: string;
+  speed?: string;
   avatar: string;
+  color: string;
+  teachings?: Teaching[];
+  files: File[];
 }
 
 const CreateBot = () => {
@@ -24,25 +34,29 @@ const CreateBot = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [botData, setBotData] = useState<BotData>({
     name: "",
-    files: [],
+    purpose: "",
+    tone: "friendly",
+    speed: "quick", 
+    avatar: "robot",
     color: "#3B82F6",
-    avatar: "default"
+    teachings: [],
+    files: []
   });
 
   const steps = [
     "Welcome",
-    "Upload Files",
-    "Name Your Bot", 
-    "Customize",
-    "Preview & Test",
+    "Pick Purpose",
+    "Build Personality", 
+    "Teach Your Bot",
+    "Test & Preview",
     "Ready to Share"
   ];
 
   const stepLabels = [
     "Getting Started",
-    "Uploading", 
-    "Naming",
-    "Customizing",
+    "Choosing Purpose",
+    "Adding Personality", 
+    "Teaching",
     "Testing",
     "Complete"
   ];
@@ -75,11 +89,11 @@ const CreateBot = () => {
       case 0:
         return <WelcomeStep onNext={nextStep} />;
       case 1:
-        return <UploadStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
+        return <PurposeStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
       case 2:
-        return <NameStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
+        return <PersonalityStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
       case 3:
-        return <CustomizeStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
+        return <TeachingStep botData={botData} updateBotData={updateBotData} onNext={nextStep} onPrev={prevStep} />;
       case 4:
         return <PreviewStep botData={botData} onNext={nextStep} onPrev={prevStep} />;
       case 5:
@@ -92,14 +106,14 @@ const CreateBot = () => {
   const progressPercentage = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
+    <div className="min-h-screen bg-gradient-fun">
       {/* Header */}
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
             onClick={() => navigate("/")}
-            className="text-white hover:bg-white/20"
+            className="text-white hover:bg-white/20 font-comic rounded-2xl"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
@@ -107,10 +121,10 @@ const CreateBot = () => {
           
           <Button
             variant="soft"
-            className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+            className="bg-white/20 text-white border-white/30 hover:bg-white/30 font-comic rounded-2xl"
           >
             <HelpCircle className="w-4 h-4 mr-2" />
-            Need help? We're here for you!
+            Need help? We're here for you! 🤗
           </Button>
         </div>
       </div>

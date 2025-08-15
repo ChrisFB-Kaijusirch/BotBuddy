@@ -68,12 +68,19 @@ export default {
 				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-accent': 'var(--gradient-accent)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-brand': 'var(--gradient-brand)',
+				'gradient-fun': 'var(--gradient-fun)'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
 				'medium': 'var(--shadow-medium)',
-				'strong': 'var(--shadow-strong)'
+				'strong': 'var(--shadow-strong)',
+				'playful': 'var(--shadow-playful)'
+			},
+			fontFamily: {
+				'comic': ['Comic Neue', 'cursive'],
+				'sans': ['Comic Neue', 'system-ui', 'sans-serif'],
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)',

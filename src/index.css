@@ -8,7 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 248 100% 99%;
+    /* Playful BotBuddy Color Palette */
+    --background: 120 100% 97%; /* Soft mint background */
     --foreground: 215 25% 27%;
 
     --card: 0 0% 100%;
@@ -17,36 +18,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
 
-    --primary: 213 78% 58%;
+    --primary: 195 85% 55%; /* Bright turquoise */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 142 69% 58%;
+    --secondary: 340 75% 65%; /* Coral pink */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 213 15% 96%;
+    --muted: 140 30% 94%; /* Light mint */
     --muted-foreground: 215 16% 47%;
 
-    --accent: 25 95% 63%;
+    --accent: 270 75% 70%; /* Soft lavender */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 213 25% 92%;
-    --input: 213 25% 92%;
-    --ring: 213 78% 58%;
+    --border: 140 25% 88%; /* Soft mint border */
+    --input: 140 25% 88%;
+    --ring: 195 85% 55%;
 
-    /* Custom BotBuddy Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(213 78% 58%), hsl(213 78% 68%));
-    --gradient-secondary: linear-gradient(135deg, hsl(142 69% 58%), hsl(142 69% 68%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 63%), hsl(25 95% 73%));
-    --gradient-hero: linear-gradient(135deg, hsl(213 78% 58%) 0%, hsl(142 69% 58%) 50%, hsl(25 95% 63%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(213 15% 98%) 100%);
-    --gradient-brand: linear-gradient(135deg, hsl(213 78% 58%) 0%, hsl(142 69% 58%) 100%);
+    /* Playful BotBuddy Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195 85% 55%), hsl(195 85% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(340 75% 65%), hsl(340 75% 75%));
+    --gradient-accent: linear-gradient(135deg, hsl(270 75% 70%), hsl(270 75% 80%));
+    --gradient-hero: linear-gradient(135deg, hsl(195 85% 55%) 0%, hsl(270 75% 70%) 50%, hsl(340 75% 65%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(140 30% 98%) 100%);
+    --gradient-brand: linear-gradient(135deg, hsl(195 85% 55%) 0%, hsl(270 75% 70%) 100%);
+    --gradient-fun: linear-gradient(45deg, hsl(340 75% 65%) 0%, hsl(195 85% 55%) 25%, hsl(270 75% 70%) 50%, hsl(45 95% 70%) 75%, hsl(340 75% 65%) 100%);
     
-    --shadow-soft: 0 4px 20px -2px hsl(213 78% 58% / 0.15);
-    --shadow-medium: 0 8px 30px -4px hsl(213 78% 58% / 0.2);
-    --shadow-strong: 0 20px 60px -8px hsl(213 78% 58% / 0.25);
+    /* Playful Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(195 85% 55% / 0.15);
+    --shadow-medium: 0 8px 30px -4px hsl(195 85% 55% / 0.2);
+    --shadow-strong: 0 20px 60px -8px hsl(195 85% 55% / 0.25);
+    --shadow-playful: 0 8px 32px -4px hsl(340 75% 65% / 0.3);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -80,16 +84,16 @@ All colors MUST be HSL.
     --popover: 215 25% 16%;
     --popover-foreground: 213 15% 96%;
 
-    --primary: 213 78% 58%;
+    --primary: 195 85% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 142 69% 48%;
+    --secondary: 340 75% 58%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 215 25% 20%;
     --muted-foreground: 213 15% 65%;
 
-    --accent: 25 95% 63%;
+    --accent: 270 75% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -97,14 +101,20 @@ All colors MUST be HSL.
 
     --border: 215 25% 20%;
     --input: 215 25% 20%;
-    --ring: 213 78% 58%;
+    --ring: 195 85% 55%;
 
     /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(213 78% 48%), hsl(213 78% 58%));
-    --gradient-secondary: linear-gradient(135deg, hsl(142 69% 48%), hsl(142 69% 58%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 63%));
-    --gradient-hero: linear-gradient(135deg, hsl(213 78% 48%) 0%, hsl(142 69% 48%) 50%, hsl(25 95% 53%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(195 85% 45%), hsl(195 85% 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(340 75% 55%), hsl(340 75% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(270 75% 60%), hsl(270 75% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(195 85% 45%) 0%, hsl(270 75% 60%) 50%, hsl(340 75% 55%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(215 25% 16%) 0%, hsl(215 25% 18%) 100%);
+    --gradient-fun: linear-gradient(45deg, hsl(340 75% 55%) 0%, hsl(195 85% 45%) 25%, hsl(270 75% 60%) 50%, hsl(45 95% 60%) 75%, hsl(340 75% 55%) 100%);
+    
+    --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
+    --shadow-strong: 0 20px 60px -8px hsl(0 0% 0% / 0.5);
+    --shadow-playful: 0 8px 32px -4px hsl(340 75% 55% / 0.3);
     
     --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
     --shadow-medium: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
@@ -120,6 +130,87 @@ All colors MUST be HSL.
   }
 }
 
+/* Playful animations and effects */
+@layer utilities {
+  .bounce-fun {
+    animation: bounce-fun 2s infinite;
+  }
+  
+  .wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+  
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .confetti {
+    animation: confetti 0.5s ease-out;
+  }
+}
+
+@keyframes bounce-fun {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -15px, 0);
+  }
+  70% {
+    transform: translate3d(0, -8px, 0);
+  }
+  90% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(180deg);
+    opacity: 0;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -127,5 +218,6 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Comic Neue', 'Arial', sans-serif;
   }
 }
