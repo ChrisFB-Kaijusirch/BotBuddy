@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Menu } from "lucide-react";
+import botbuddyLogo from "@/assets/botbuddy-logo.png";
 
 const Navigation = () => {
   return (
@@ -7,9 +8,13 @@ const Navigation = () => {
       <div className="container px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <MessageCircle className="w-8 h-8 text-primary" />
-            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+          <div className="flex items-center gap-3">
+            <img 
+              src={botbuddyLogo} 
+              alt="BotBuddy Logo" 
+              className="w-10 h-10 rounded-lg shadow-soft"
+            />
+            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               BotBuddy
             </span>
           </div>

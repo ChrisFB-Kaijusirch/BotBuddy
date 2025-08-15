@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import botBuddyMascot from "@/assets/botbuddy-mascot.png";
+import botBuddyLogo from "@/assets/botbuddy-logo.png";
 
 const Hero = () => {
   return (
@@ -16,8 +17,13 @@ const Hero = () => {
       {/* Content */}
       <div className="container relative z-10 text-center px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          {/* Mascot */}
-          <div className="mb-8 flex justify-center">
+          {/* Logo & Mascot */}
+          <div className="mb-8 flex justify-center items-center gap-6">
+            <img 
+              src={botBuddyLogo} 
+              alt="BotBuddy Logo" 
+              className="w-24 h-24 rounded-2xl shadow-strong"
+            />
             <img 
               src={botBuddyMascot} 
               alt="BotBuddy mascot - friendly robot" 
@@ -28,7 +34,7 @@ const Hero = () => {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Meet{" "}
-            <span className="bg-gradient-secondary bg-clip-text text-transparent">
+            <span className="bg-gradient-brand bg-clip-text text-transparent drop-shadow-lg">
               BotBuddy
             </span>
           </h1>
