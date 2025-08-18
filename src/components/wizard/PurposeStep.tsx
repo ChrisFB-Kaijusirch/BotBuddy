@@ -104,7 +104,7 @@ const PurposeStep = ({ botData, updateBotData, onNext, onPrev }: PurposeStepProp
             } backdrop-blur rounded-3xl`}
             onClick={() => handleSelect(purpose.id)}
           >
-            <div className={`w-20 h-20 rounded-full ${purpose.color} flex items-center justify-center text-4xl mb-6 mx-auto shadow-medium float`}>
+            <div className={`w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-4xl mb-6 mx-auto shadow-soft float backdrop-blur-sm`}>
               {purpose.emoji}
             </div>
             

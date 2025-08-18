@@ -8,49 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* BotBuddy Brand Color Palette - Based on Logo */
+    /* Professional BotBuddy Color Palette */
     --background: 0 0% 0% / 0; /* Transparent background */
-    --foreground: 210 40% 15%;
+    --foreground: 210 15% 25%;
 
     --card: 0 0% 100% / 0.95;
-    --card-foreground: 210 40% 15%;
+    --card-foreground: 210 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 15%;
+    --popover-foreground: 210 15% 25%;
 
-    --primary: 195 100% 60%; /* BotBuddy cyan */
+    --primary: 195 70% 45%; /* Muted cyan */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 100% 70%; /* BotBuddy purple/magenta */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 15% 95%; /* Soft gray */
+    --secondary-foreground: 210 15% 25%;
 
-    --muted: 195 30% 95%; /* Light cyan */
-    --muted-foreground: 210 20% 50%;
+    --muted: 210 10% 96%; /* Very light gray */
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 200 90% 55%; /* Bright cyan accent */
+    --accent: 195 50% 50%; /* Subtle cyan accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 195 30% 85%; /* Light cyan border */
-    --input: 195 20% 90%;
-    --ring: 195 100% 60%;
+    --border: 210 15% 88%; /* Soft gray border */
+    --input: 210 10% 92%;
+    --ring: 195 70% 45%;
 
-    /* BotBuddy Brand Gradients - Matching Logo */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 60%), hsl(200 90% 55%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 100% 70%), hsl(290 95% 65%));
-    --gradient-accent: linear-gradient(135deg, hsl(200 90% 55%), hsl(210 85% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 60%) 0%, hsl(280 100% 70%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(195 30% 98% / 0.9) 100%);
-    --gradient-brand: linear-gradient(135deg, hsl(195 100% 60%) 0%, hsl(280 100% 70%) 100%);
-    --gradient-fun: linear-gradient(45deg, hsl(195 100% 60%) 0%, hsl(200 90% 55%) 25%, hsl(280 100% 70%) 50%, hsl(290 95% 65%) 75%, hsl(195 100% 60%) 100%);
+    /* Professional Gradients - Subtle */
+    --gradient-primary: linear-gradient(135deg, hsl(195 70% 45%), hsl(195 60% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210 15% 95%), hsl(210 10% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(195 50% 50%), hsl(195 40% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(195 70% 45%) 0%, hsl(195 50% 50%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(210 10% 98% / 0.9) 100%);
+    --gradient-brand: linear-gradient(135deg, hsl(195 70% 45%) 0%, hsl(195 50% 50%) 100%);
+    --gradient-fun: linear-gradient(45deg, hsl(195 70% 45%) 0%, hsl(195 60% 50%) 50%, hsl(195 50% 50%) 100%);
     
-    /* BotBuddy Brand Shadows */
-    --shadow-soft: 0 4px 20px -2px hsl(195 100% 60% / 0.15);
-    --shadow-medium: 0 8px 30px -4px hsl(195 100% 60% / 0.2);
-    --shadow-strong: 0 20px 60px -8px hsl(195 100% 60% / 0.25);
-    --shadow-playful: 0 8px 32px -4px hsl(280 100% 70% / 0.3);
+    /* Subtle Professional Shadows */
+    --shadow-soft: 0 2px 10px -2px hsl(195 70% 45% / 0.08);
+    --shadow-medium: 0 4px 20px -4px hsl(195 70% 45% / 0.12);
+    --shadow-strong: 0 8px 30px -8px hsl(195 70% 45% / 0.15);
+    --shadow-playful: 0 4px 20px -4px hsl(195 50% 50% / 0.15);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -76,40 +76,40 @@ All colors MUST be HSL.
 
   .dark {
     --background: 0 0% 0% / 0; /* Transparent background */
-    --foreground: 195 30% 90%;
+    --foreground: 210 15% 85%;
 
-    --card: 210 30% 15% / 0.95;
-    --card-foreground: 195 30% 90%;
+    --card: 210 20% 12% / 0.95;
+    --card-foreground: 210 15% 85%;
 
-    --popover: 210 30% 15%;
-    --popover-foreground: 195 30% 90%;
+    --popover: 210 20% 12%;
+    --popover-foreground: 210 15% 85%;
 
-    --primary: 195 100% 65%;
+    --primary: 195 60% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 100% 75%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 15% 18%;
+    --secondary-foreground: 210 15% 85%;
 
-    --muted: 210 30% 20%;
-    --muted-foreground: 195 20% 70%;
+    --muted: 210 15% 15%;
+    --muted-foreground: 210 10% 65%;
 
-    --accent: 200 90% 60%;
+    --accent: 195 50% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 30% 25%;
-    --input: 210 30% 20%;
-    --ring: 195 100% 65%;
+    --border: 210 20% 25%;
+    --input: 210 15% 18%;
+    --ring: 195 60% 55%;
 
-    /* Dark mode gradients - BotBuddy Brand */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 55%), hsl(200 90% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 100% 65%), hsl(290 95% 70%));
-    --gradient-accent: linear-gradient(135deg, hsl(200 90% 55%), hsl(210 85% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(195 100% 55%) 0%, hsl(280 100% 65%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(210 30% 15% / 0.95) 0%, hsl(210 30% 18% / 0.9) 100%);
-    --gradient-fun: linear-gradient(45deg, hsl(195 100% 55%) 0%, hsl(200 90% 60%) 25%, hsl(280 100% 65%) 50%, hsl(290 95% 70%) 75%, hsl(195 100% 55%) 100%);
+    /* Dark mode gradients - Professional */
+    --gradient-primary: linear-gradient(135deg, hsl(195 60% 50%), hsl(195 50% 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210 15% 18%), hsl(210 10% 20%));
+    --gradient-accent: linear-gradient(135deg, hsl(195 50% 55%), hsl(195 40% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(195 60% 50%) 0%, hsl(195 50% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 20% 12% / 0.95) 0%, hsl(210 15% 15% / 0.9) 100%);
+    --gradient-fun: linear-gradient(45deg, hsl(195 60% 50%) 0%, hsl(195 50% 55%) 50%, hsl(195 40% 50%) 100%);
     
     --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
     --shadow-medium: 0 8px 30px -4px hsl(0 0% 0% / 0.4);

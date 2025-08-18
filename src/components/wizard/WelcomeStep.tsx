@@ -14,7 +14,7 @@ const WelcomeStep = ({ onNext }: WelcomeStepProps) => {
           <img 
             src={botBuddyLogo} 
             alt="BotBuddy Logo" 
-            className="w-40 h-40 mx-auto rounded-full shadow-playful bounce-fun"
+            className="w-40 h-40 mx-auto rounded-full shadow-playful bounce-fun bg-transparent"
           />
           <div className="absolute -top-2 -right-2 text-4xl animate-bounce">👋</div>
         </div>
