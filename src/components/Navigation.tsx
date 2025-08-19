@@ -14,37 +14,31 @@ const Navigation = () => {
               alt="BotBuddy Logo" 
               className="w-10 h-10 rounded-lg shadow-soft"
             />
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-brand bg-clip-text text-transparent">
               BotBuddy
             </span>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-foreground hover:text-primary transition-colors">
+            <a href="/features" className="text-foreground hover:text-primary transition-colors">
               Features
             </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors">
+            <a href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
               How it Works
             </a>
-            <a href="#pricing" className="text-foreground hover:text-primary transition-colors">
-              Pricing
-            </a>
-            <a href="#help" className="text-foreground hover:text-primary transition-colors">
+            <a href="/help" className="text-foreground hover:text-primary transition-colors">
               Help
             </a>
           </div>
           
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost">
-              Sign In
-            </Button>
             <Button 
-              variant="default"
               onClick={() => window.location.href = "/create-bot"}
+              className="bg-gradient-brand hover:opacity-90 transition-opacity"
             >
-              Start Free
+              Start Building Free
             </Button>
           </div>
           

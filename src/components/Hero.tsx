@@ -1,11 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useState } from "react";
 import heroBackground from "@/assets/hero-background.jpg";
 import botBuddyMascot from "@/assets/botbuddy-mascot.png";
 import botBuddyLogo from "@/assets/botbuddy-logo.png";
 import AnimatedCircuits from "./AnimatedCircuits";
+import DemoModal from "./DemoModal";
 
 const Hero = () => {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Animated Circuits Background */}
@@ -53,17 +56,21 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
-              variant="hero" 
               size="xl" 
               onClick={() => window.location.href = "/create-bot"}
-              className="group"
+              className="group bg-gradient-brand hover:opacity-90 transition-opacity"
             >
               Start Building for Free
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
-            <Button variant="outline" size="xl">
-              <Play className="w-5 h-5" />
+            <Button 
+              variant="outline" 
+              size="xl" 
+              onClick={() => setIsDemoOpen(true)}
+              className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all shadow-medium hover:shadow-strong"
+            >
+              <Play className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
               Watch Demo
             </Button>
           </div>
@@ -79,6 +86,9 @@ const Hero = () => {
       <div className="absolute top-20 left-10 w-20 h-20 bg-secondary/20 rounded-full blur-xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-32 h-32 bg-accent/20 rounded-full blur-xl animate-pulse delay-1000" />
       <div className="absolute top-1/2 left-5 w-16 h-16 bg-primary/20 rounded-full blur-xl animate-pulse delay-500" />
+      
+      {/* Demo Modal */}
+      <DemoModal open={isDemoOpen} onOpenChange={setIsDemoOpen} />
     </section>
   );
 };
