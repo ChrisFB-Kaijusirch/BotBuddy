@@ -12,7 +12,7 @@ interface DemoModalProps {
 
 const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Auto-play enabled
   const [messages, setMessages] = useState([
     { text: "Hello! I'm your new chatbot assistant. How can I help you today?", isBot: true }
   ]);
@@ -24,37 +24,48 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
       title: "Step 1: Upload Documents",
       description: "Watch how easy it is to upload your content",
       icon: Upload,
-      duration: 3000
+      duration: 4000 // Longer duration for smoother experience
     },
     {
       title: "Step 2: Customize Bot",
       description: "See the bot being configured with personality",
       icon: Settings,
-      duration: 3000
+      duration: 4000
     },
     {
       title: "Step 3: Test & Deploy",
       description: "Experience your bot in action",
       icon: MessageCircle,
-      duration: 4000
+      duration: 5000 // Extra time for interaction
     }
   ];
 
-  // Auto-play functionality
+  // Auto-play functionality with loop
   useEffect(() => {
-    if (isPlaying && currentStep < demoSteps.length - 1) {
+    if (isPlaying) {
       const timer = setTimeout(() => {
-        setCurrentStep(prev => prev + 1);
+        setCurrentStep(prev => {
+          if (prev >= demoSteps.length - 1) {
+            return 0; // Loop back to start for continuous play
+          }
+          return prev + 1;
+        });
       }, demoSteps[currentStep].duration);
       setAutoPlayTimer(timer);
-    } else if (isPlaying && currentStep >= demoSteps.length - 1) {
-      setIsPlaying(false);
     }
 
     return () => {
       if (autoPlayTimer) clearTimeout(autoPlayTimer);
     };
   }, [isPlaying, currentStep]);
+
+  // Start auto-play when modal opens
+  useEffect(() => {
+    if (open) {
+      setIsPlaying(true);
+      setCurrentStep(0);
+    }
+  }, [open]);
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -83,7 +94,7 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[85vh] overflow-y-auto">
+      <DialogContent className="max-w-7xl w-[95vw] max-h-[95vh] overflow-y-auto p-8">
         <DialogHeader>
           <DialogTitle className="text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             🎬 BotBuddy Demo - Watch It Work!
@@ -123,9 +134,9 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
               </div>
             ))}
           </div>
-          <div className="w-full bg-muted rounded-full h-2">
+          <div className="w-full bg-muted rounded-full h-3">
             <div 
-              className="bg-primary h-2 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full transition-all duration-1000 ease-in-out"
               style={{ width: `${((currentStep + 1) / demoSteps.length) * 100}%` }}
             />
           </div>
@@ -181,9 +192,9 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
           {/* Right Side - Demo Content */}
           <div className="space-y-4">
             {currentStep === 0 && (
-              <Card className="p-6">
+              <Card className="p-6 transition-all duration-500 animate-scale-in">
                 <div className="text-center mb-4">
-                  <Upload className="w-20 h-20 mx-auto mb-4 text-primary animate-bounce" />
+                  <Upload className="w-24 h-24 mx-auto mb-4 text-primary animate-pulse" />
                   <h4 className="text-xl font-bold mb-2">Uploading Documents...</h4>
                   <p className="text-muted-foreground">
                     Sarah is uploading her company's FAQ and product manuals
@@ -215,9 +226,9 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
             )}
 
             {currentStep === 1 && (
-              <Card className="p-6">
+              <Card className="p-6 transition-all duration-500 animate-scale-in">
                 <div className="text-center mb-4">
-                  <Settings className="w-20 h-20 mx-auto mb-4 text-primary animate-spin" />
+                  <Settings className="w-24 h-24 mx-auto mb-4 text-primary animate-spin" />
                   <h4 className="text-xl font-bold mb-2">Customizing Bot...</h4>
                   <p className="text-muted-foreground">
                     Setting up personality and appearance
@@ -253,16 +264,16 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
             )}
 
             {currentStep === 2 && (
-              <Card className="p-4">
+              <Card className="p-6 transition-all duration-500 animate-scale-in">
                 <div className="text-center mb-4">
-                  <MessageCircle className="w-16 h-16 mx-auto mb-2 text-primary" />
+                  <MessageCircle className="w-24 h-24 mx-auto mb-4 text-primary animate-pulse" />
                   <h4 className="text-xl font-bold mb-2">Testing the Bot</h4>
                   <p className="text-muted-foreground text-sm">
                     Watch Sarah test her new assistant
                   </p>
                 </div>
                 
-                <div className="h-64 border rounded-lg p-4 overflow-y-auto bg-background">
+                <div className="h-72 border rounded-lg p-4 overflow-y-auto bg-background">
                   {messages.map((message, index) => (
                     <div key={index} className={`flex gap-3 mb-3 ${message.isBot ? '' : 'justify-end'}`}>
                       {message.isBot && (
