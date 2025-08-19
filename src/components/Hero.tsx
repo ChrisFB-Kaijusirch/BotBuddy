@@ -6,13 +6,9 @@ import botBuddyLogo from "@/assets/botbuddy-logo.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary/10 to-transparent" />
       
       {/* Content */}
       <div className="container relative z-10 text-center px-4 py-20">
@@ -32,20 +28,20 @@ const Hero = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
             Meet{" "}
-            <span className="bg-gradient-brand bg-clip-text text-transparent drop-shadow-lg">
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
               BotBuddy
             </span>
           </h1>
           
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/90 mb-4 font-medium">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
             Your Friendly, No-Tech Chatbot Builder
           </p>
           
           {/* Description */}
-          <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
             Create smart chatbots in minutes, not hours. No coding required—just upload your documents, 
             answer a few questions, and your AI assistant is ready to help!
           </p>
@@ -62,14 +58,14 @@ const Hero = () => {
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
-            <Button variant="soft" size="xl" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+            <Button variant="outline" size="xl">
               <Play className="w-5 h-5" />
               Watch Demo
             </Button>
           </div>
           
           {/* Trust indicators */}
-          <div className="mt-12 text-white/70 text-sm">
+          <div className="mt-12 text-muted-foreground text-sm">
             <p>✨ No credit card required • 🚀 5-minute setup • 🔒 Enterprise-grade security</p>
           </div>
         </div>

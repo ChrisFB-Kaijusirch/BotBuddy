@@ -18,16 +18,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 10% 20%;
 
-    --primary: 195 35% 45%; /* Subtle cyan */
+    --primary: 214 100% 60%; /* Bright blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 8% 96%; /* Very light gray */
     --secondary-foreground: 210 10% 30%;
 
     --muted: 210 6% 97%; /* Ultra light gray */
-    --muted-foreground: 210 8% 50%;
+    --muted-foreground: 210 8% 45%;
 
-    --accent: 195 25% 50%; /* Muted cyan accent */
+    --accent: 214 90% 65%; /* Lighter blue accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -43,7 +43,7 @@ All colors MUST be HSL.
     --gradient-accent: linear-gradient(135deg, hsl(195 25% 50%), hsl(195 20% 45%));
     --gradient-hero: linear-gradient(135deg, hsl(195 35% 45%) 0%, hsl(195 25% 50%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 6% 98%) 100%);
-    --gradient-brand: linear-gradient(135deg, hsl(195 35% 45%) 0%, hsl(195 25% 50%) 100%);
+    --gradient-brand: linear-gradient(135deg, hsl(214 100% 60%) 0%, hsl(214 90% 65%) 100%);
     --gradient-fun: linear-gradient(45deg, hsl(195 35% 45%) 0%, hsl(195 30% 50%) 50%, hsl(195 25% 50%) 100%);
     
     /* Minimal Shadows */
