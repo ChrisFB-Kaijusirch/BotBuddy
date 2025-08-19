@@ -6,31 +6,36 @@ const features = [
     icon: Upload,
     title: "Designed for Beginners",
     description: "If you can upload a file and click a button, you can build a bot. No coding, no jargon, just clear steps.",
-    color: "text-primary"
+    iconColor: "text-primary",
+    iconBg: "bg-primary/10"
   },
   {
     icon: Brain,
     title: "Smart & Simple",
     description: "BotBuddy uses AI behind the scenes to understand your data and deliver fast, helpful answers.",
-    color: "text-secondary"
+    iconColor: "text-accent",
+    iconBg: "bg-accent/10"
   },
   {
     icon: Rocket,
     title: "Instant Deployment",
     description: "Share your bot anywhere—on your website, in emails, or social media—with easy drag-and-drop widgets.",
-    color: "text-accent"
+    iconColor: "text-primary",
+    iconBg: "bg-primary/10"
   },
   {
     icon: BookOpen,
     title: "Learn as You Go",
     description: "Built-in tips and friendly guides help you every step of the way, so you feel confident and in control.",
-    color: "text-primary"
+    iconColor: "text-accent",
+    iconBg: "bg-accent/10"
   },
   {
     icon: Shield,
     title: "Safe & Secure",
     description: "Your data stays private with enterprise-level security, even if you're just starting out.",
-    color: "text-secondary"
+    iconColor: "text-primary",
+    iconBg: "bg-primary/10"
   }
 ];
 
@@ -41,7 +46,7 @@ const Features = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Why Choose{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
               BotBuddy?
             </span>
           </h2>
@@ -55,13 +60,13 @@ const Features = () => {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="p-8 bg-gradient-card shadow-soft hover:shadow-medium transition-all duration-300 hover:scale-105 border-0"
+              className="p-8 bg-gradient-card shadow-soft hover:shadow-strong transition-all duration-300 hover:scale-105 border-0"
             >
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-4">
-                  <feature.icon className={`w-8 h-8 ${feature.color}`} />
+                <div className={`w-16 h-16 rounded-2xl ${feature.iconBg} flex items-center justify-center mb-4`}>
+                  <feature.icon className={`w-8 h-8 ${feature.iconColor}`} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             </Card>

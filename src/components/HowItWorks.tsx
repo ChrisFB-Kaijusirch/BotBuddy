@@ -8,21 +8,27 @@ const steps = [
     number: "01",
     title: "Upload Your Content",
     description: "Simply drag and drop your documents, PDFs, or text files. BotBuddy will read and understand your content automatically.",
-    color: "bg-gradient-primary"
+    color: "bg-gradient-primary",
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary"
   },
   {
     icon: Settings,
     number: "02", 
     title: "Customize Your Bot",
     description: "Answer a few friendly questions about your bot's personality and purpose. No technical knowledge needed!",
-    color: "bg-gradient-secondary"
+    color: "bg-gradient-accent",
+    iconBg: "bg-accent/10",
+    iconColor: "text-accent"
   },
   {
     icon: Share2,
     number: "03",
     title: "Share & Deploy",
     description: "Get your shareable link instantly or embed your bot anywhere with our simple copy-paste code.",
-    color: "bg-gradient-accent"
+    color: "bg-gradient-brand",
+    iconBg: "bg-gradient-brand/10",
+    iconColor: "text-primary"
   }
 ];
 
@@ -33,7 +39,7 @@ const HowItWorks = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             How It{" "}
-            <span className="bg-gradient-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
               Works
             </span>
           </h2>
@@ -47,7 +53,7 @@ const HowItWorks = () => {
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <Card className="p-8 bg-gradient-card shadow-soft hover:shadow-medium transition-all duration-300 border-0 h-full">
+                <Card className="p-8 bg-gradient-card shadow-soft hover:shadow-strong transition-all duration-300 border-0 h-full hover:scale-105">
                   <div className="text-center">
                     {/* Step Number */}
                     <div className={`w-16 h-16 rounded-full ${step.color} text-white text-xl font-bold flex items-center justify-center mx-auto mb-6 shadow-medium`}>
@@ -55,12 +61,12 @@ const HowItWorks = () => {
                     </div>
                     
                     {/* Icon */}
-                    <div className="w-12 h-12 mx-auto mb-6 text-primary">
-                      <step.icon className="w-full h-full" />
+                    <div className={`w-16 h-16 rounded-2xl ${step.iconBg} flex items-center justify-center mx-auto mb-6`}>
+                      <step.icon className={`w-8 h-8 ${step.iconColor}`} />
                     </div>
                     
                     {/* Content */}
-                    <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-foreground">{step.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
                 </Card>
@@ -77,7 +83,7 @@ const HowItWorks = () => {
           
           {/* CTA */}
           <div className="text-center">
-            <Button variant="hero" size="xl" className="group">
+            <Button variant="hero" size="xl" className="group shadow-strong">
               Start Your Free Bot Now
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
