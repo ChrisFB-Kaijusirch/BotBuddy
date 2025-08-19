@@ -55,6 +55,16 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+    /* Typing animation */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
@@ -194,6 +204,21 @@ All colors MUST be HSL.
 
   .animate-particle-flow-4 {
     animation: particle-flow-vertical 4s linear infinite 3s;
+  }
+
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid #2563eb;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end), blink 0.75s step-end infinite;
+  }
+
+  .typing-animation.delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .typing-animation.delay-2000 {
+    animation-delay: 2s;
   }
 }
 

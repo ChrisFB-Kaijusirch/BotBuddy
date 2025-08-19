@@ -1,8 +1,8 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
-import { MessageCircle, Send, Upload, Settings, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
+import { MessageCircle, Send, Upload, Settings, Sparkles, Play, Pause } from "lucide-react";
 import botBuddyMascot from "@/assets/botbuddy-mascot.png";
 
 interface DemoModalProps {
@@ -12,31 +12,61 @@ interface DemoModalProps {
 
 const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [messages, setMessages] = useState([
     { text: "Hello! I'm your new chatbot assistant. How can I help you today?", isBot: true }
   ]);
   const [userInput, setUserInput] = useState("");
+  const [autoPlayTimer, setAutoPlayTimer] = useState<NodeJS.Timeout | null>(null);
 
   const demoSteps = [
     {
-      title: "Upload Your Documents",
-      description: "Simply drag and drop your files or paste your content",
+      title: "Step 1: Upload Documents",
+      description: "Watch how easy it is to upload your content",
       icon: Upload,
-      action: () => setCurrentStep(1)
+      duration: 3000
     },
     {
-      title: "Customize Your Bot",
-      description: "Choose personality, name, and appearance",
+      title: "Step 2: Customize Bot",
+      description: "See the bot being configured with personality",
       icon: Settings,
-      action: () => setCurrentStep(2)
+      duration: 3000
     },
     {
-      title: "Test Your Bot",
-      description: "Try out your new AI assistant",
+      title: "Step 3: Test & Deploy",
+      description: "Experience your bot in action",
       icon: MessageCircle,
-      action: () => setCurrentStep(3)
+      duration: 4000
     }
   ];
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPlaying && currentStep < demoSteps.length - 1) {
+      const timer = setTimeout(() => {
+        setCurrentStep(prev => prev + 1);
+      }, demoSteps[currentStep].duration);
+      setAutoPlayTimer(timer);
+    } else if (isPlaying && currentStep >= demoSteps.length - 1) {
+      setIsPlaying(false);
+    }
+
+    return () => {
+      if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    };
+  }, [isPlaying, currentStep]);
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const resetDemo = () => {
+    setCurrentStep(0);
+    setIsPlaying(false);
+    setMessages([{ text: "Hello! I'm your new chatbot assistant. How can I help you today?", isBot: true }]);
+    setUserInput("");
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+  };
 
   const handleSendMessage = () => {
     if (!userInput.trim()) return;
@@ -51,91 +81,172 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
     setUserInput("");
   };
 
-  const resetDemo = () => {
-    setCurrentStep(0);
-    setMessages([{ text: "Hello! I'm your new chatbot assistant. How can I help you today?", isBot: true }]);
-    setUserInput("");
-  };
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center">
-            See BotBuddy in Action
+          <DialogTitle className="text-3xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            🎬 BotBuddy Demo - Watch It Work!
           </DialogTitle>
+          <p className="text-center text-muted-foreground">
+            See how someone creates a chatbot in just 3 simple steps
+          </p>
         </DialogHeader>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Left Side - Steps */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Build Your Bot in 3 Steps:</h3>
-            
+        {/* Video Controls */}
+        <div className="flex justify-center gap-4 mb-6">
+          <Button 
+            onClick={togglePlayPause} 
+            variant="outline" 
+            className="flex items-center gap-2"
+          >
+            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            {isPlaying ? 'Pause Demo' : 'Play Demo'}
+          </Button>
+          <Button onClick={resetDemo} variant="outline">
+            <Sparkles className="w-4 h-4 mr-2" />
+            Restart
+          </Button>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mb-6">
+          <div className="flex justify-between mb-2">
             {demoSteps.map((step, index) => (
-              <Card 
+              <div 
                 key={index}
-                className={`p-4 cursor-pointer transition-all ${
-                  currentStep === index ? 'ring-2 ring-primary bg-primary/5' : 'hover:bg-muted/50'
+                className={`text-xs font-medium ${
+                  index <= currentStep ? 'text-primary' : 'text-muted-foreground'
                 }`}
-                onClick={step.action}
               >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${
-                    currentStep === index ? 'bg-primary text-primary-foreground' : 'bg-muted'
+                {step.title}
+              </div>
+            ))}
+          </div>
+          <div className="w-full bg-muted rounded-full h-2">
+            <div 
+              className="bg-primary h-2 rounded-full transition-all duration-500"
+              style={{ width: `${((currentStep + 1) / demoSteps.length) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Left Side - Current Step Display */}
+          <div className="space-y-6">
+            <Card className="p-6 border-2 border-primary/20 bg-primary/5">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-primary text-primary-foreground rounded-lg">
+                  {(() => {
+                    const IconComponent = demoSteps[currentStep].icon;
+                    return <IconComponent className="w-6 h-6" />;
+                  })()}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">{demoSteps[currentStep].title}</h3>
+                  <p className="text-muted-foreground">{demoSteps[currentStep].description}</p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Step Indicators */}
+            <div className="space-y-3">
+              {demoSteps.map((step, index) => (
+                <div 
+                  key={index}
+                  className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
+                    currentStep === index 
+                      ? 'bg-primary/10 border border-primary/30' 
+                      : 'bg-muted/30 hover:bg-muted/50'
+                  }`}
+                  onClick={() => setCurrentStep(index)}
+                >
+                  <div className={`p-2 rounded-full ${
+                    index <= currentStep ? 'bg-primary text-primary-foreground' : 'bg-muted'
                   }`}>
-                    <step.icon className="w-5 h-5" />
+                    <step.icon className="w-4 h-4" />
                   </div>
                   <div>
                     <h4 className="font-medium">{step.title}</h4>
                     <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
+                  {index <= currentStep && (
+                    <div className="ml-auto text-primary">✓</div>
+                  )}
                 </div>
-              </Card>
-            ))}
-
-            <div className="pt-4">
-              <Button onClick={resetDemo} variant="outline" className="w-full">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Restart Demo
-              </Button>
+              ))}
             </div>
           </div>
 
           {/* Right Side - Demo Content */}
           <div className="space-y-4">
             {currentStep === 0 && (
-              <Card className="p-6 text-center">
-                <Upload className="w-16 h-16 mx-auto mb-4 text-primary" />
-                <h4 className="text-lg font-semibold mb-2">Upload Your Content</h4>
-                <p className="text-muted-foreground mb-4">
-                  Drag and drop PDFs, Word docs, or paste text directly
-                </p>
-                <div className="border-2 border-dashed border-muted rounded-lg p-8">
-                  <p className="text-sm text-muted-foreground">
-                    📄 company-handbook.pdf<br/>
-                    📄 product-guide.docx<br/>
-                    📄 faq-content.txt
+              <Card className="p-6">
+                <div className="text-center mb-4">
+                  <Upload className="w-20 h-20 mx-auto mb-4 text-primary animate-bounce" />
+                  <h4 className="text-xl font-bold mb-2">Uploading Documents...</h4>
+                  <p className="text-muted-foreground">
+                    Sarah is uploading her company's FAQ and product manuals
                   </p>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="border-2 border-dashed border-primary/30 rounded-lg p-6 bg-primary/5">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 animate-pulse">
+                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <span>📄 company-faq.pdf (2.3 MB)</span>
+                      </div>
+                      <div className="flex items-center gap-2 animate-pulse delay-300">
+                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <span>📄 product-manual.docx (1.8 MB)</span>
+                      </div>
+                      <div className="flex items-center gap-2 animate-pulse delay-500">
+                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <span>📄 support-guidelines.txt (0.5 MB)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center text-sm text-muted-foreground">
+                    ✅ Documents processed and ready for training!
+                  </div>
                 </div>
               </Card>
             )}
 
             {currentStep === 1 && (
               <Card className="p-6">
-                <Settings className="w-16 h-16 mx-auto mb-4 text-primary" />
-                <h4 className="text-lg font-semibold mb-4 text-center">Customize Your Bot</h4>
+                <div className="text-center mb-4">
+                  <Settings className="w-20 h-20 mx-auto mb-4 text-primary animate-spin" />
+                  <h4 className="text-xl font-bold mb-2">Customizing Bot...</h4>
+                  <p className="text-muted-foreground">
+                    Setting up personality and appearance
+                  </p>
+                </div>
+                
                 <div className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium">Bot Name</label>
-                    <div className="mt-1 p-2 bg-muted rounded">Alex Assistant</div>
+                  <div className="space-y-3">
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <label className="text-sm font-medium text-muted-foreground">Bot Name</label>
+                      <div className="mt-1 p-2 bg-background rounded border">
+                        <span className="typing-animation">Sarah's Support Assistant</span>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <label className="text-sm font-medium text-muted-foreground">Personality</label>
+                      <div className="mt-1 p-2 bg-background rounded border">
+                        <span className="typing-animation delay-1000">Friendly & Professional</span>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-muted/50 rounded-lg">
+                      <label className="text-sm font-medium text-muted-foreground">Purpose</label>
+                      <div className="mt-1 p-2 bg-background rounded border">
+                        <span className="typing-animation delay-2000">Customer Support & FAQ</span>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium">Personality</label>
-                    <div className="mt-1 p-2 bg-muted rounded">Professional & Helpful</div>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium">Purpose</label>
-                    <div className="mt-1 p-2 bg-muted rounded">Customer Support</div>
+                  <div className="text-center text-sm text-muted-foreground">
+                    ⚡ Bot personality configured successfully!
                   </div>
                 </div>
               </Card>
@@ -143,8 +254,15 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
 
             {currentStep === 2 && (
               <Card className="p-4">
-                <h4 className="text-lg font-semibold mb-4 text-center">Test Your Bot</h4>
-                <div className="h-64 border rounded-lg p-4 overflow-y-auto bg-muted/20">
+                <div className="text-center mb-4">
+                  <MessageCircle className="w-16 h-16 mx-auto mb-2 text-primary" />
+                  <h4 className="text-xl font-bold mb-2">Testing the Bot</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Watch Sarah test her new assistant
+                  </p>
+                </div>
+                
+                <div className="h-64 border rounded-lg p-4 overflow-y-auto bg-background">
                   {messages.map((message, index) => (
                     <div key={index} className={`flex gap-3 mb-3 ${message.isBot ? '' : 'justify-end'}`}>
                       {message.isBot && (
@@ -152,7 +270,7 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
                       )}
                       <div className={`max-w-xs p-3 rounded-lg ${
                         message.isBot 
-                          ? 'bg-background border' 
+                          ? 'bg-muted border' 
                           : 'bg-primary text-primary-foreground'
                       }`}>
                         <p className="text-sm">{message.text}</p>
@@ -160,33 +278,42 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
                     </div>
                   ))}
                 </div>
+                
                 <div className="flex gap-2 mt-4">
                   <input
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder="Ask something..."
+                    placeholder="Try asking: 'What are your business hours?'"
                     className="flex-1 p-2 border rounded-lg"
                   />
-                  <Button onClick={handleSendMessage}>
+                  <Button onClick={handleSendMessage} className="bg-primary">
                     <Send className="w-4 h-4" />
                   </Button>
+                </div>
+                
+                <div className="text-center text-sm text-muted-foreground mt-3">
+                  🎉 Bot is live and ready to help customers!
                 </div>
               </Card>
             )}
           </div>
         </div>
 
-        <div className="text-center pt-4 border-t">
+        <div className="text-center pt-6 border-t mt-6">
+          <p className="text-muted-foreground mb-4">
+            Ready to create your own AI assistant like Sarah did?
+          </p>
           <Button 
             size="lg"
             onClick={() => {
               onOpenChange(false);
               window.location.href = "/create-bot";
             }}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90"
           >
-            Start Building Your Own Bot
+            Start Building Your Bot Now - It's Free! 🚀
           </Button>
         </div>
       </DialogContent>
