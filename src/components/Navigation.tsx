@@ -8,13 +8,13 @@ const Navigation = () => {
       <div className="container px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img 
               src={botbuddyLogo} 
               alt="BotBuddy Logo" 
-              className="w-10 h-10 rounded-lg shadow-soft"
+              className="w-16 h-16 rounded-xl shadow-soft"
             />
-            <span className="text-2xl font-bold bg-gradient-brand bg-clip-text text-transparent">
+            <span className="text-3xl font-bold bg-gradient-brand bg-clip-text text-transparent">
               BotBuddy
             </span>
           </div>
