@@ -24,19 +24,19 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
       title: "Step 1: Upload Documents",
       description: "Watch how easy it is to upload your content",
       icon: Upload,
-      duration: 4000 // Longer duration for smoother experience
+      duration: 2500 // Shorter duration
     },
     {
       title: "Step 2: Customize Bot",
       description: "See the bot being configured with personality",
       icon: Settings,
-      duration: 4000
+      duration: 2500 // Shorter duration
     },
     {
       title: "Step 3: Test & Deploy",
       description: "Experience your bot in action",
       icon: MessageCircle,
-      duration: 5000 // Extra time for interaction
+      duration: 3000 // Shorter duration
     }
   ];
 
@@ -194,32 +194,107 @@ const DemoModal = ({ open, onOpenChange }: DemoModalProps) => {
             {currentStep === 0 && (
               <Card className="p-6 transition-all duration-500 animate-scale-in">
                 <div className="text-center mb-4">
-                  <Upload className="w-24 h-24 mx-auto mb-4 text-primary animate-pulse" />
-                  <h4 className="text-xl font-bold mb-2">Uploading Documents...</h4>
+                  <div className="relative">
+                    <Upload className="w-24 h-24 mx-auto mb-4 text-primary animate-bounce" />
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center animate-pulse">
+                      <span className="text-white text-xs">3</span>
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-bold mb-2">Drag & Drop Files</h4>
                   <p className="text-muted-foreground">
-                    Sarah is uploading her company's FAQ and product manuals
+                    Sarah is dragging files into the upload area
                   </p>
                 </div>
                 
-                <div className="space-y-3">
-                  <div className="border-2 border-dashed border-primary/30 rounded-lg p-6 bg-primary/5">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 animate-pulse">
-                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                        <span>📄 company-faq.pdf (2.3 MB)</span>
+                <div className="space-y-4">
+                  {/* Drag and Drop Zone */}
+                  <div className="border-2 border-dashed border-primary/30 rounded-xl p-8 bg-gradient-to-br from-primary/5 to-blue-50 relative overflow-hidden">
+                    <div className="text-center">
+                      <div className="mb-4 relative">
+                        <Upload className="w-16 h-16 mx-auto text-primary/40" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2 animate-pulse delay-300">
-                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                        <span>📄 product-manual.docx (1.8 MB)</span>
+                      <p className="text-lg font-medium text-primary">Drag files here or click to upload</p>
+                      <p className="text-sm text-muted-foreground mt-1">PDF, DOC, TXT files supported</p>
+                    </div>
+                    
+                    {/* Animated files being dragged */}
+                    <div className="absolute top-4 left-4 animate-bounce delay-300">
+                      <div className="bg-white shadow-lg rounded-lg p-2 border flex items-center gap-2 opacity-90">
+                        <div className="w-6 h-6 bg-red-100 rounded flex items-center justify-center">
+                          <span className="text-xs">📄</span>
+                        </div>
+                        <span className="text-xs font-medium">FAQ.pdf</span>
                       </div>
-                      <div className="flex items-center gap-2 animate-pulse delay-500">
-                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                        <span>📄 support-guidelines.txt (0.5 MB)</span>
+                    </div>
+                    
+                    <div className="absolute top-12 right-8 animate-bounce delay-500">
+                      <div className="bg-white shadow-lg rounded-lg p-2 border flex items-center gap-2 opacity-90">
+                        <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
+                          <span className="text-xs">📄</span>
+                        </div>
+                        <span className="text-xs font-medium">Manual.docx</span>
+                      </div>
+                    </div>
+                    
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce delay-700">
+                      <div className="bg-white shadow-lg rounded-lg p-2 border flex items-center gap-2 opacity-90">
+                        <div className="w-6 h-6 bg-green-100 rounded flex items-center justify-center">
+                          <span className="text-xs">📄</span>
+                        </div>
+                        <span className="text-xs font-medium">Guidelines.txt</span>
                       </div>
                     </div>
                   </div>
-                  <div className="text-center text-sm text-muted-foreground">
-                    ✅ Documents processed and ready for training!
+                  
+                  {/* Upload Progress */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3 p-3 bg-white rounded-lg border animate-fade-in">
+                      <div className="w-8 h-8 bg-red-100 rounded flex items-center justify-center">
+                        <span className="text-sm">📄</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-sm font-medium">company-faq.pdf</span>
+                          <span className="text-xs text-green-600">✓ Complete</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-green-500 h-2 rounded-full w-full transition-all duration-1000"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-white rounded-lg border animate-fade-in delay-300">
+                      <div className="w-8 h-8 bg-blue-100 rounded flex items-center justify-center">
+                        <span className="text-sm">📄</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-sm font-medium">product-manual.docx</span>
+                          <span className="text-xs text-blue-600">Uploading... 85%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-blue-500 h-2 rounded-full w-4/5 transition-all duration-1000 animate-pulse"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-white rounded-lg border animate-fade-in delay-500">
+                      <div className="w-8 h-8 bg-green-100 rounded flex items-center justify-center">
+                        <span className="text-sm">📄</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-sm font-medium">support-guidelines.txt</span>
+                          <span className="text-xs text-gray-500">Pending...</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-gray-300 h-2 rounded-full w-1/4 transition-all duration-1000"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Card>
