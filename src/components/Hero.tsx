@@ -3,10 +3,14 @@ import { ArrowRight, Play } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import botBuddyMascot from "@/assets/botbuddy-mascot.png";
 import botBuddyLogo from "@/assets/botbuddy-logo.png";
+import AnimatedCircuits from "./AnimatedCircuits";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Animated Circuits Background */}
+      <AnimatedCircuits />
+      
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary/10 to-transparent" />
       

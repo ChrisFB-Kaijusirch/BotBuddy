@@ -130,7 +130,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Playful animations and effects */
+/* Circuit and electrical animations */
 @layer utilities {
   .bounce-fun {
     animation: bounce-fun 2s infinite;
@@ -146,6 +146,54 @@ All colors MUST be HSL.
   
   .confetti {
     animation: confetti 0.5s ease-out;
+  }
+
+  .animate-circuit-pulse {
+    animation: circuit-pulse 4s ease-in-out infinite;
+  }
+
+  .animate-circuit-flow-1 {
+    animation: circuit-flow-1 3s ease-in-out infinite;
+  }
+
+  .animate-circuit-flow-2 {
+    animation: circuit-flow-2 3s ease-in-out infinite 0.5s;
+  }
+
+  .animate-circuit-flow-3 {
+    animation: circuit-flow-3 3s ease-in-out infinite 1s;
+  }
+
+  .animate-circuit-flow-4 {
+    animation: circuit-flow-4 3s ease-in-out infinite 1.5s;
+  }
+
+  .animate-circuit-flow-5 {
+    animation: circuit-flow-5 3s ease-in-out infinite 2s;
+  }
+
+  .animate-circuit-flow-6 {
+    animation: circuit-flow-6 3s ease-in-out infinite 2.5s;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-particle-flow-1 {
+    animation: particle-flow-horizontal 4s linear infinite;
+  }
+
+  .animate-particle-flow-2 {
+    animation: particle-flow-horizontal 4s linear infinite 1s;
+  }
+
+  .animate-particle-flow-3 {
+    animation: particle-flow-vertical 4s linear infinite 2s;
+  }
+
+  .animate-particle-flow-4 {
+    animation: particle-flow-vertical 4s linear infinite 3s;
   }
 }
 
@@ -197,6 +245,147 @@ All colors MUST be HSL.
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+/* Circuit animation keyframes */
+@keyframes circuit-pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes circuit-flow-1 {
+  0% { 
+    stroke-dasharray: 0 1000;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 500 500;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 1000 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-flow-2 {
+  0% { 
+    stroke-dasharray: 0 1000;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 500 500;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 1000 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-flow-3 {
+  0% { 
+    stroke-dasharray: 0 800;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 400 400;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 800 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-flow-4 {
+  0% { 
+    stroke-dasharray: 0 800;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 400 400;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 800 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-flow-5 {
+  0% { 
+    stroke-dasharray: 0 600;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 300 300;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 600 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-flow-6 {
+  0% { 
+    stroke-dasharray: 0 600;
+    opacity: 0.3;
+  }
+  50% { 
+    stroke-dasharray: 300 300;
+    opacity: 1;
+  }
+  100% { 
+    stroke-dasharray: 600 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes glow {
+  0% { 
+    filter: drop-shadow(0 0 2px hsl(var(--primary)));
+    opacity: 0.6;
+  }
+  100% { 
+    filter: drop-shadow(0 0 8px hsl(var(--primary)));
+    opacity: 1;
+  }
+}
+
+@keyframes particle-flow-horizontal {
+  0% { 
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(1250px);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-flow-vertical {
+  0% { 
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(850px);
+    opacity: 0;
   }
 }
 
