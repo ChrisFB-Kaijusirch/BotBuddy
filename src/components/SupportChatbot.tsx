@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,16 +28,38 @@ const SupportChatbot = ({ onEscalateToEmail, onClose }: SupportChatbotProps) => 
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isTyping]);
 
   const botResponses: Record<string, string> = {
     "create": "To create a chatbot: 1) Click 'Start Building for Free', 2) Upload your documents (PDF, Word, or text), 3) Choose your bot's personality, 4) Customize the appearance, and 5) Deploy! The whole process takes less than 5 minutes.",
+    "build": "To create a chatbot: 1) Click 'Start Building for Free', 2) Upload your documents (PDF, Word, or text), 3) Choose your bot's personality, 4) Customize the appearance, and 5) Deploy! The whole process takes less than 5 minutes.",
     "upload": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
+    "document": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
+    "file": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
     "personality": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
+    "customize": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
     "embed": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
+    "website": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
+    "integrate": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
     "limit": "Free plan: 3 chatbots, 100 conversations/month. Pro plan: Unlimited chatbots, 1000 conversations/month. Enterprise: Custom limits with priority support.",
+    "plan": "Free plan: 3 chatbots, 100 conversations/month. Pro plan: Unlimited chatbots, 1000 conversations/month. Enterprise: Custom limits with priority support.",
     "language": "BotBuddy supports over 50 languages! Your chatbot can automatically detect the user's language and respond accordingly, or you can set a specific language.",
     "pricing": "We offer a free plan with 3 chatbots. Pro plan is $29/month for unlimited chatbots. Enterprise plans start at $99/month with custom features and priority support.",
-    "help": "I can help with: creating chatbots, uploading documents, personality settings, embedding on websites, pricing questions, language support, and troubleshooting. What specific topic interests you?"
+    "cost": "We offer a free plan with 3 chatbots. Pro plan is $29/month for unlimited chatbots. Enterprise plans start at $99/month with custom features and priority support.",
+    "free": "Yes! We offer a free plan that includes 3 chatbots and 100 conversations per month. Perfect for getting started!",
+    "trial": "Yes! We offer a free plan that includes 3 chatbots and 100 conversations per month. Perfect for getting started!",
+    "help": "I can help with: creating chatbots, uploading documents, personality settings, embedding on websites, pricing questions, language support, and troubleshooting. What specific topic interests you?",
+    "support": "I'm here to help! I can assist with creating chatbots, uploading documents, customization, embedding, pricing, and more. What would you like to know?",
+    "start": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?",
+    "begin": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?"
   };
 
   const findBestResponse = (userMessage: string): string => {
@@ -158,18 +180,19 @@ const SupportChatbot = ({ onEscalateToEmail, onClose }: SupportChatbotProps) => 
               </div>
             ))}
             
-            {isTyping && (
-              <div className="flex gap-2 justify-start">
-                <Bot className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <div className="bg-muted text-foreground p-2 rounded-lg text-sm">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-current rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                    <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                  </div>
-                </div>
-              </div>
-            )}
+             {isTyping && (
+               <div className="flex gap-2 justify-start">
+                 <Bot className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                 <div className="bg-muted text-foreground p-2 rounded-lg text-sm">
+                   <div className="flex gap-1">
+                     <div className="w-2 h-2 bg-current rounded-full animate-bounce"></div>
+                     <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                     <div className="w-2 h-2 bg-current rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                   </div>
+                 </div>
+               </div>
+             )}
+             <div ref={messagesEndRef} />
           </div>
         </ScrollArea>
         
