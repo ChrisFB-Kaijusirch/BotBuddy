@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, HelpCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import AnimatedCircuits from "@/components/AnimatedCircuits";
 import WelcomeStep from "@/components/wizard/WelcomeStep";
 import PurposeStep from "@/components/wizard/PurposeStep";
 import PersonalityStep from "@/components/wizard/PersonalityStep";
@@ -106,22 +107,26 @@ const CreateBot = () => {
   const progressPercentage = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-fun">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Circuits Background */}
+      <AnimatedCircuits />
+      <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary/10 to-transparent" />
+      
       {/* Header */}
-      <div className="container mx-auto px-4 py-6">
+      <div className="relative z-10 container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
             onClick={() => navigate("/")}
-            className="text-white hover:bg-white/20 font-comic rounded-2xl"
+            className="text-foreground hover:bg-muted"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Button>
           
           <Button
-            variant="soft"
-            className="bg-white/20 text-white border-white/30 hover:bg-white/30 font-comic rounded-2xl"
+            variant="outline"
+            className="border-primary/20 hover:bg-primary/10"
           >
             <HelpCircle className="w-4 h-4 mr-2" />
             Need help? We're here for you! 🤗
@@ -131,21 +136,21 @@ const CreateBot = () => {
 
       {/* Progress Bar */}
       {currentStep > 0 && (
-        <div className="container mx-auto px-4 mb-8">
+        <div className="relative z-10 container mx-auto px-4 mb-8">
           <div className="max-w-2xl mx-auto">
             <div className="mb-4">
-              <div className="flex justify-between text-white/80 text-sm mb-2">
+              <div className="flex justify-between text-muted-foreground text-sm mb-2">
                 <span>Step {currentStep} of {steps.length - 1}</span>
                 <span>{stepLabels[currentStep]}</span>
               </div>
-              <Progress value={progressPercentage} className="h-2 bg-white/20" />
+              <Progress value={progressPercentage} className="h-2" />
             </div>
           </div>
         </div>
       )}
 
       {/* Step Content */}
-      <div className="container mx-auto px-4 pb-12">
+      <div className="relative z-10 container mx-auto px-4 pb-12">
         {renderStep()}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
+import AnimatedCircuits from "@/components/AnimatedCircuits";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -119,74 +120,78 @@ const Help = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <main className="pt-20">
-        <div className="container px-4 py-16">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              How Can We{" "}
-              <span className="bg-gradient-brand bg-clip-text text-transparent">
-                Help You?
-              </span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Find answers to common questions or get in touch with our support team.
-            </p>
-          </div>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <AnimatedCircuits />
+      <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-primary/10 to-transparent" />
+      <div className="relative z-10">
+        <Navigation />
+        <main className="pt-20">
+          <div className="container px-4 py-16">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+                How Can We{" "}
+                <span className="bg-gradient-brand bg-clip-text text-transparent">
+                  Help You?
+                </span>
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Find answers to common questions or get in touch with our support team.
+              </p>
+            </div>
 
-          {/* Help Categories */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {helpCategories.map((category, index) => (
-              <Card key={index} className="hover:shadow-medium transition-shadow cursor-pointer" onClick={category.action}>
-                <CardHeader className="text-center">
-                  <category.icon className={`w-12 h-12 mx-auto mb-4 ${category.color}`} />
-                  <CardTitle className="text-lg">{category.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-center">{category.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* FAQ Section */}
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqData.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-medium">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
+            {/* Help Categories */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {helpCategories.map((category, index) => (
+                <Card key={index} className="hover:shadow-medium transition-shadow cursor-pointer" onClick={category.action}>
+                  <CardHeader className="text-center">
+                    <category.icon className={`w-12 h-12 mx-auto mb-4 ${category.color}`} />
+                    <CardTitle className="text-lg">{category.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-center">{category.description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </Accordion>
-          </div>
+            </div>
 
-          {/* Contact Section */}
-          <div className="text-center mt-16">
-            <h3 className="text-2xl font-bold mb-4">Still Need Help?</h3>
-            <p className="text-muted-foreground mb-6">
-              Our support team is here to help you succeed with BotBuddy.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={() => setActiveModal("chat")}>
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Start Live Chat
-              </Button>
-              <Button variant="outline" size="lg" onClick={() => setActiveModal("email")}>
-                <Mail className="w-5 h-5 mr-2" />
-                Email Support
-              </Button>
+            {/* FAQ Section */}
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+              <Accordion type="single" collapsible className="space-y-4">
+                {faqData.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
+                    <AccordionTrigger className="text-left font-medium">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Contact Section */}
+            <div className="text-center mt-16">
+              <h3 className="text-2xl font-bold mb-4">Still Need Help?</h3>
+              <p className="text-muted-foreground mb-6">
+                Our support team is here to help you succeed with BotBuddy.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" onClick={() => setActiveModal("chat")}>
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Start Live Chat
+                </Button>
+                <Button variant="outline" size="lg" onClick={() => setActiveModal("email")}>
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email Support
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
 
       {/* Modals */}
       <Dialog open={activeModal === "getting-started"} onOpenChange={() => setActiveModal(null)}>
