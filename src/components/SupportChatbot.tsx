@@ -41,59 +41,93 @@ const SupportChatbot = ({ onEscalateToEmail, onClose }: SupportChatbotProps) => 
   const botResponses: Record<string, string> = {
     "create": "To create a chatbot: 1) Click 'Start Building for Free', 2) Upload your documents (PDF, Word, or text), 3) Choose your bot's personality, 4) Customize the appearance, and 5) Deploy! The whole process takes less than 5 minutes.",
     "build": "To create a chatbot: 1) Click 'Start Building for Free', 2) Upload your documents (PDF, Word, or text), 3) Choose your bot's personality, 4) Customize the appearance, and 5) Deploy! The whole process takes less than 5 minutes.",
+    "start": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?",
+    "begin": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?",
+    "use": "You can use BotBuddy by creating a bot, uploading your knowledge, selecting a personality, and embedding it on your site. Say 'getting started' for the step-by-step guide.",
+    "using": "You can use BotBuddy by creating a bot, uploading your knowledge, selecting a personality, and embedding it on your site. Say 'getting started' for the step-by-step guide.",
+    "getting started": "Getting Started: 1) Create a bot, 2) Upload PDFs/Docs/Text, 3) Pick a personality, 4) Customize colors/widget, 5) Test in preview, 6) Embed on your site.",
     "upload": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
     "document": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
     "file": "You can upload PDF files, Word documents, text files, or paste text directly. BotBuddy supports most common document formats and automatically extracts knowledge from your content.",
-    "personality": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
-    "customize": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
     "embed": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
     "website": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
     "integrate": "Once your chatbot is ready, you'll get a simple HTML code snippet. Just copy and paste it into your website - no technical knowledge required! You can also use our WordPress plugin or Shopify app.",
-    "limit": "Free plan: 3 chatbots, 100 conversations/month. Pro plan: Unlimited chatbots, 1000 conversations/month. Enterprise: Custom limits with priority support.",
-    "plan": "Free plan: 3 chatbots, 100 conversations/month. Pro plan: Unlimited chatbots, 1000 conversations/month. Enterprise: Custom limits with priority support.",
-    "language": "BotBuddy supports over 50 languages! Your chatbot can automatically detect the user's language and respond accordingly, or you can set a specific language.",
     "pricing": "We offer a free plan with 3 chatbots. Pro plan is $29/month for unlimited chatbots. Enterprise plans start at $99/month with custom features and priority support.",
+    "plan": "We offer a free plan with 3 chatbots. Pro plan is $29/month for unlimited chatbots. Enterprise plans start at $99/month with custom features and priority support.",
     "cost": "We offer a free plan with 3 chatbots. Pro plan is $29/month for unlimited chatbots. Enterprise plans start at $99/month with custom features and priority support.",
-    "free": "Yes! We offer a free plan that includes 3 chatbots and 100 conversations per month. Perfect for getting started!",
-    "trial": "Yes! We offer a free plan that includes 3 chatbots and 100 conversations per month. Perfect for getting started!",
-    "help": "I can help with: creating chatbots, uploading documents, personality settings, embedding on websites, pricing questions, language support, and troubleshooting. What specific topic interests you?",
-    "support": "I'm here to help! I can assist with creating chatbots, uploading documents, customization, embedding, pricing, and more. What would you like to know?",
-    "start": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?",
-    "begin": "Great! To get started: 1) Click 'Start Building for Free', 2) Upload your content, 3) Choose personality, 4) Customize appearance, 5) Deploy. Need help with any specific step?"
+    "billing": "Billing: Manage your subscription in Settings > Billing. You can upgrade/downgrade anytime. For cancellations or refunds, contact support with your invoice number.",
+    "cancel": "To cancel: go to Settings > Billing and choose Cancel Plan. Your access continues until the end of the billing period.",
+    "refund": "For refunds within our policy window, contact support with your invoice number and reason. We'll review promptly.",
+    "language": "BotBuddy supports over 50 languages! Your chatbot can automatically detect the user's language and respond accordingly, or you can set a specific language.",
+    "personality": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
+    "customize": "Yes! You can choose from Professional, Friendly, Casual, or Expert personalities. You can also customize the tone, style, and even add custom responses to match your brand perfectly.",
+    "account": "Account help: You can sign in, reset your password, and manage your profile from the account menu. For login issues, try resetting your password.",
+    "login": "If you can't log in, click 'Forgot password' on the sign-in page to reset it. Still stuck? I can open the contact form.",
+    "password": "Reset your password from the sign-in page via 'Forgot password'. You'll receive an email with a reset link.",
+    "troubleshoot": "Troubleshooting: 1) Refresh the page, 2) Clear browser cache, 3) Re-upload a small sample file, 4) Check your embed code is placed before </body>. Tell me where you're stuck.",
+    "error": "Troubleshooting: 1) Refresh the page, 2) Clear browser cache, 3) Re-upload a small sample file, 4) Check your embed code is placed before </body>. Tell me where you're stuck.",
+    "help": "I can help with: getting started, uploading documents, personalities, customizing, embedding, pricing/billing, languages, account and troubleshooting. What topic should we cover?",
+    "support": "I'm here to help! Ask about getting started, uploads, embedding, or pricing. If you'd like, I can open the contact form for human support."
   };
 
   const findBestResponse = (userMessage: string): string => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    for (const [keyword, response] of Object.entries(botResponses)) {
-      if (lowerMessage.includes(keyword)) {
-        return response;
-      }
+    const lower = userMessage.toLowerCase();
+
+    // Quick troubleshooting detection
+    if (/(not working|error|issue|bug|fail|crash)/i.test(lower)) {
+      return botResponses["troubleshoot"];
     }
-    
-    // Check for common question patterns
-    if (lowerMessage.includes("how") && (lowerMessage.includes("create") || lowerMessage.includes("make"))) {
-      return botResponses["create"];
+
+    // Score-based intent matching inspired by common support flows
+    const categories: { key: string; keywords: string[] }[] = [
+      { key: "create", keywords: ["create","build","make","start","getting started","how do i use","use","using"] },
+      { key: "upload", keywords: ["upload","document","documents","file","files","pdf","word","text","knowledge","data"] },
+      { key: "embed", keywords: ["embed","integration","integrate","website","wordpress","shopify","script","snippet"] },
+      { key: "pricing", keywords: ["pricing","price","cost","plan","plans","billing","subscription"] },
+      { key: "personality", keywords: ["personality","tone","style","custom","customize","behavior"] },
+      { key: "language", keywords: ["language","languages","translate","multilingual","locale"] },
+      { key: "account", keywords: ["account","login","sign in","signin","password","reset"] },
+      { key: "help", keywords: ["help","support","guide","tutorial","video"] },
+    ];
+
+    const scored = categories
+      .map(c => ({
+        key: c.key,
+        score: c.keywords.reduce((s, k) => s + (lower.includes(k) ? 1 : 0), 0),
+      }))
+      .sort((a, b) => b.score - a.score)[0];
+
+    if (scored && scored.score > 0) {
+      const map: Record<string, string> = {
+        create: "start",
+        help: "help",
+        pricing: "pricing",
+        upload: "upload",
+        embed: "embed",
+        personality: "personality",
+        language: "language",
+        account: "account",
+      };
+      const key = map[scored.key] ?? scored.key;
+      return botResponses[key] ?? botResponses["help"];
     }
-    
-    if (lowerMessage.includes("what") && lowerMessage.includes("file")) {
+
+    // Heuristics
+    if (lower.includes("how") && (lower.includes("create") || lower.includes("make") || lower.includes("use"))) {
+      return botResponses["start"];
+    }
+    if (lower.includes("what") && lower.includes("file")) {
       return botResponses["upload"];
     }
-    
-    if (lowerMessage.includes("can") && lowerMessage.includes("custom")) {
-      return botResponses["personality"];
-    }
-    
-    if (lowerMessage.includes("website") || lowerMessage.includes("embed")) {
+    if (lower.includes("website") || lower.includes("embed")) {
       return botResponses["embed"];
     }
-    
-    if (lowerMessage.includes("cost") || lowerMessage.includes("price") || lowerMessage.includes("plan")) {
+    if (/(cost|price|plan|pricing)/.test(lower)) {
       return botResponses["pricing"];
     }
-    
-    // Default response when no match found
-    return "I'm not sure about that specific question. Let me connect you with our human support team who can provide more detailed assistance. Would you like me to open the contact form?";
+
+    // Default: suggest topics and offer escalation
+    return "Sorry, I couldn't find an exact match. I can help with: Getting Started, Uploading Documents, Embedding, Pricing/Billing, Languages, Account, Troubleshooting. If you'd like, I can connect you with our human support team and open the contact form.";
   };
 
   const handleSendMessage = async () => {
@@ -146,7 +180,7 @@ const SupportChatbot = ({ onEscalateToEmail, onClose }: SupportChatbotProps) => 
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto h-96 flex flex-col">
+    <Card className="w-full max-w-md mx-auto h-96 flex flex-col overflow-hidden">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-sm">
           <MessageCircle className="w-4 h-4" />
@@ -154,8 +188,8 @@ const SupportChatbot = ({ onEscalateToEmail, onClose }: SupportChatbotProps) => 
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="flex-1 flex flex-col p-3">
-        <ScrollArea className="flex-1 pr-3">
+      <CardContent className="flex-1 flex flex-col p-3 min-h-0 overflow-hidden">
+        <ScrollArea className="flex-1 h-full pr-3">
           <div className="space-y-3">
             {messages.map((message) => (
               <div
