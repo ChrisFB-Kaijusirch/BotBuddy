@@ -433,6 +433,6 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Comic Neue', 'Arial', sans-serif;
+    font-family: 'Comic Neue', 'Inter', system-ui, -apple-system, sans-serif;
   }
 }

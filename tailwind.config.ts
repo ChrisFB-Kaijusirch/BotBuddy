@@ -79,8 +79,8 @@ export default {
 				'playful': 'var(--shadow-playful)'
 			},
 			fontFamily: {
-				'comic': ['Comic Neue', 'cursive'],
-				'sans': ['Comic Neue', 'system-ui', 'sans-serif'],
+				'comic': ['Comic Neue', 'Inter', 'system-ui', 'sans-serif'],
+				'sans': ['Inter', 'Comic Neue', 'system-ui', 'sans-serif'],
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)',

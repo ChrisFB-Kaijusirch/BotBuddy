@@ -67,10 +67,10 @@ const PurposeStep = ({ botData, updateBotData, onNext, onPrev }: PurposeStepProp
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">
         <div className="text-6xl mb-6 animate-bounce">🤔</div>
-        <h2 className="text-4xl md:text-6xl font-bold font-comic text-white mb-6">
+        <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
           What should your bot do?
         </h2>
-        <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-comic">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Pick the superpower that fits your needs! 💪
         </p>
       </div>
@@ -97,29 +97,29 @@ const PurposeStep = ({ botData, updateBotData, onNext, onPrev }: PurposeStepProp
         {purposes.map((purpose) => (
           <Card 
             key={purpose.id}
-            className={`p-8 cursor-pointer transition-all duration-300 hover:scale-105 border-4 ${
+            className={`p-8 cursor-pointer transition-all duration-300 hover:scale-105 border-2 ${
               selectedPurpose === purpose.id 
-                ? 'border-white shadow-playful scale-105 bg-white/20' 
-                : 'border-white/30 hover:border-white/60 bg-white/10'
+                ? 'border-primary shadow-strong scale-105 bg-card' 
+                : 'border-border hover:border-primary bg-card/50'
             } backdrop-blur rounded-3xl`}
             onClick={() => handleSelect(purpose.id)}
           >
-            <div className={`w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-4xl mb-6 mx-auto shadow-soft float backdrop-blur-sm`}>
+            <div className={`w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-4xl mb-6 mx-auto shadow-soft animate-pulse`}>
               {purpose.emoji}
             </div>
             
-            <h3 className="text-2xl font-bold font-comic text-white mb-3 text-center">
+            <h3 className="text-2xl font-bold text-foreground mb-3 text-center">
               {purpose.title}
             </h3>
             
-            <p className="text-white/80 text-lg mb-6 text-center font-comic leading-relaxed">
+            <p className="text-muted-foreground text-lg mb-6 text-center leading-relaxed">
               {purpose.description}
             </p>
             
             <div className="space-y-2">
-              <p className="text-white/70 text-sm font-comic text-center font-bold">Example questions:</p>
+              <p className="text-muted-foreground text-sm text-center font-medium">Example questions:</p>
               {purpose.examples.map((example, index) => (
-                <div key={index} className="text-white/60 text-sm bg-white/10 rounded-xl px-3 py-2 text-center font-comic">
+                <div key={index} className="text-muted-foreground text-sm bg-muted rounded-xl px-3 py-2 text-center">
                   "{example}"
                 </div>
               ))}
@@ -128,7 +128,7 @@ const PurposeStep = ({ botData, updateBotData, onNext, onPrev }: PurposeStepProp
             {selectedPurpose === purpose.id && (
               <div className="mt-4 text-center">
                 <div className="text-2xl animate-bounce">✅</div>
-                <p className="text-white font-comic font-bold">Perfect choice!</p>
+                <p className="text-primary font-bold">Perfect choice!</p>
               </div>
             )}
           </Card>
@@ -140,17 +140,16 @@ const PurposeStep = ({ botData, updateBotData, onNext, onPrev }: PurposeStepProp
         <Button 
           variant="ghost" 
           onClick={onPrev}
-          className="text-white hover:bg-white/20 font-comic text-lg rounded-2xl px-8 py-4"
+          className="text-lg rounded-2xl px-8 py-4"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back
         </Button>
         
         <Button 
-          variant="hero" 
           onClick={handleNext}
           disabled={!selectedPurpose}
-          className="group font-comic text-lg rounded-2xl px-8 py-4 shadow-playful hover:scale-110 transition-all duration-300"
+          className="group text-lg rounded-2xl px-8 py-4 shadow-strong hover:scale-105 transition-all duration-300"
         >
           Next Step! 🎯
           <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />

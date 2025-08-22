@@ -148,10 +148,10 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">
         <div className="text-6xl mb-6 bounce-fun">🧠</div>
-        <h2 className="text-4xl md:text-6xl font-bold font-comic text-white mb-6">
+        <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
           Teach it 3 things to say!
         </h2>
-        <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-comic">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           When someone says this → your bot says that! 💬
         </p>
       </div>
@@ -159,20 +159,20 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
       {/* Quick Hacks */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-6">
-          <Lightbulb className="w-8 h-8 text-white wiggle" />
-          <h3 className="text-2xl font-bold font-comic text-white">Bot Hacks Library 🚀</h3>
+          <Lightbulb className="w-8 h-8 text-accent wiggle" />
+          <h3 className="text-2xl font-bold text-foreground">Bot Hacks Library 🚀</h3>
         </div>
         
         <div className="grid md:grid-cols-3 gap-4">
           {quickHacks.map((hack, index) => (
             <Card 
               key={index}
-              className="bg-white/10 backdrop-blur border-white/20 p-6 rounded-3xl hover:scale-105 transition-all cursor-pointer"
+              className="bg-card/50 backdrop-blur border p-6 rounded-3xl hover:scale-105 transition-all cursor-pointer"
               onClick={() => applyQuickHack(hack)}
             >
-              <h4 className="text-lg font-bold font-comic text-white mb-2">{hack.title}</h4>
-              <p className="text-white/80 text-sm font-comic mb-4">{hack.description}</p>
-              <Button variant="secondary" size="sm" className="w-full rounded-2xl font-comic">
+              <h4 className="text-lg font-bold text-foreground mb-2">{hack.title}</h4>
+              <p className="text-muted-foreground text-sm mb-4">{hack.description}</p>
+              <Button variant="secondary" size="sm" className="w-full rounded-2xl">
                 Use This! ✨
               </Button>
             </Card>
@@ -183,18 +183,18 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
       {/* Teaching Interface */}
       <div className="space-y-6 mb-8">
         {teachings.map((teaching, index) => (
-          <Card key={teaching.id} className="bg-white/10 backdrop-blur border-white/20 p-6 rounded-3xl">
+          <Card key={teaching.id} className="bg-card/50 backdrop-blur border p-6 rounded-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-white font-bold font-comic">
+              <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground font-bold">
                 {index + 1}
               </div>
-              <h4 className="text-lg font-bold font-comic text-white">Teaching #{index + 1}</h4>
+              <h4 className="text-lg font-bold text-foreground">Teaching #{index + 1}</h4>
               {teachings.length > 1 && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => removeTeaching(teaching.id)}
-                  className="ml-auto text-white/60 hover:text-white hover:bg-white/10 rounded-2xl"
+                  className="ml-auto text-muted-foreground hover:text-destructive rounded-2xl"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
@@ -203,7 +203,7 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
 
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-white/90 font-comic font-bold mb-2">
+                <label className="block text-foreground font-bold mb-2">
                   When someone says: 🗣️
                 </label>
                 <div className="relative">
@@ -212,16 +212,16 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
                     value={teaching.trigger}
                     onChange={(e) => updateTeaching(teaching.id, 'trigger', e.target.value)}
                     placeholder="e.g., 'Hi' or 'What are your hours?'"
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-2xl font-comic pr-12"
+                    className="rounded-2xl pr-12"
                   />
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => startVoiceInput(teaching.id, 'trigger')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary"
                   >
                     {isRecording === `${teaching.id}-trigger` ? (
-                      <MicOff className="w-4 h-4 text-red-400 animate-pulse" />
+                      <MicOff className="w-4 h-4 text-destructive animate-pulse" />
                     ) : (
                       <Mic className="w-4 h-4" />
                     )}
@@ -230,7 +230,7 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
               </div>
 
               <div>
-                <label className="block text-white/90 font-comic font-bold mb-2">
+                <label className="block text-foreground font-bold mb-2">
                   Your bot says: 🤖
                 </label>
                 <div className="relative">
@@ -239,16 +239,16 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
                     value={teaching.response}
                     onChange={(e) => updateTeaching(teaching.id, 'response', e.target.value)}
                     placeholder="e.g., 'Hey there! I'm Luna!'"
-                    className="bg-white/20 border-white/30 text-white placeholder:text-white/60 rounded-2xl font-comic pr-12"
+                    className="rounded-2xl pr-12"
                   />
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => startVoiceInput(teaching.id, 'response')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary"
                   >
                     {isRecording === `${teaching.id}-response` ? (
-                      <MicOff className="w-4 h-4 text-red-400 animate-pulse" />
+                      <MicOff className="w-4 h-4 text-destructive animate-pulse" />
                     ) : (
                       <Mic className="w-4 h-4" />
                     )}
@@ -258,13 +258,13 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
             </div>
 
             {teaching.trigger && teaching.response && (
-              <div className="mt-4 p-4 bg-white/5 rounded-2xl">
-                <p className="text-white/70 text-sm font-comic mb-2">Preview:</p>
+              <div className="mt-4 p-4 bg-muted/50 rounded-2xl">
+                <p className="text-muted-foreground text-sm mb-2">Preview:</p>
                 <div className="flex items-start gap-3">
-                  <div className="text-white bg-white/20 px-3 py-2 rounded-2xl font-comic text-sm">
+                  <div className="text-foreground bg-muted px-3 py-2 rounded-2xl text-sm">
                     {teaching.trigger}
                   </div>
-                  <div className="text-white bg-gradient-primary px-3 py-2 rounded-2xl font-comic text-sm">
+                  <div className="text-primary-foreground bg-gradient-primary px-3 py-2 rounded-2xl text-sm">
                     {teaching.response}
                   </div>
                 </div>
@@ -279,7 +279,7 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
         <Button
           variant="secondary"
           onClick={addTeaching}
-          className="font-comic text-lg rounded-2xl px-8 py-4 shadow-medium hover:scale-110 transition-all duration-300"
+          className="text-lg rounded-2xl px-8 py-4 shadow-medium hover:scale-105 transition-all duration-300"
         >
           <Plus className="w-5 h-5 mr-2" />
           Teach it more! 🎓
@@ -291,17 +291,16 @@ const TeachingStep = ({ botData, updateBotData, onNext, onPrev }: TeachingStepPr
         <Button 
           variant="ghost" 
           onClick={onPrev}
-          className="text-white hover:bg-white/20 font-comic text-lg rounded-2xl px-8 py-4"
+          className="text-lg rounded-2xl px-8 py-4"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back
         </Button>
         
         <Button 
-          variant="hero" 
           onClick={handleNext}
           disabled={!teachings.some(t => t.trigger.trim() && t.response.trim())}
-          className="group font-comic text-lg rounded-2xl px-8 py-4 shadow-playful hover:scale-110 transition-all duration-300"
+          className="group text-lg rounded-2xl px-8 py-4 shadow-strong hover:scale-105 transition-all duration-300"
         >
           My bot is getting smart! 🧠✨
           <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
