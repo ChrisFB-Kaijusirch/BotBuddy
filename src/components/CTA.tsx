@@ -21,7 +21,7 @@ const CTA = () => {
             or just to wow your friends, BotBuddy makes it fun, fast, and frustration-free.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex justify-center items-center mb-8">
             <Button 
               variant="secondary" 
               size="xl" 
@@ -30,10 +30,6 @@ const CTA = () => {
             >
               Get Started - It's Free!
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            
-            <Button variant="soft" size="xl" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
-              Talk to Sales
             </Button>
           </div>
           
