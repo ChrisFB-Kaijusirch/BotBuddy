@@ -11,7 +11,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Index />} />
