@@ -10,18 +10,8 @@ export default defineConfig(({ mode }) => {
   const isUserOrOrgSite = !!repoName && repoName.endsWith(".github.io");
 
   return {
-    // If developing locally: '/'
-    // If deploying to GitHub Pages:
-    //  - user/org sites like "<user>.github.io": '/'
-    //  - project sites: '/<repo>/'
-    base:
-      mode === "development"
-        ? "/"
-        : isUserOrOrgSite
-        ? "/"
-        : repoName
-        ? `/${repoName}/`
-        : "/",
+    // Fix for GitHub Pages: always use "/BotBuddy/" as base in production
+    base: mode === "development" ? "/" : "/BotBuddy/",
 
     server: {
       host: "::",
